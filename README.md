@@ -1,0 +1,62 @@
+# I Love Claude Code
+
+A community repository for Claude Code shortcuts, automation, hacks, and productivity tips.
+
+## What is this?
+
+This repository is a collection of practical tips, tricks, and guides for getting the most out of Claude Code. Whether you're looking to automate repetitive tasks, create custom workflows, or simply work more efficiently, you'll find useful resources here.
+
+## Contents
+
+### Commands
+- [Creating Slash Commands](commands/creating-slash-commands.md) - Complete guide to building custom slash commands
+
+### Tips & Tricks
+- Context management strategies
+- Performance optimization techniques
+- Advanced workflow patterns
+
+### Automation
+- Git workflow automation
+- CI/CD integration patterns
+- Custom hooks and scripts
+
+### Productivity Hacks
+- Keyboard shortcuts
+- Session management
+- Memory optimization
+
+## Quick Start
+
+1. **Custom Commands**: Create your own slash commands by adding markdown files to `.claude/commands/`
+2. **Shortcuts**: Learn essential keyboard shortcuts and command patterns
+3. **Automation**: Set up hooks and integrate with your existing tools
+
+## Contributing
+
+Have a great Claude Code tip or trick? We'd love to include it!
+
+1. Fork this repository
+2. Add your tip/guide to the appropriate directory
+3. Submit a pull request
+
+Please keep contributions:
+- Practical and actionable
+- Well-documented with examples
+- Focused on productivity and efficiency
+
+## Resources
+
+- [Official Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Claude Code GitHub](https://github.com/anthropics/claude-code)
+
+## Community
+
+Share your experiences, ask questions, and connect with other Claude Code users:
+- Submit issues for discussion topics
+- Share your workflows and productivity tips
+- Help others optimize their Claude Code usage
+
+---
+
+*This repository is community-maintained and not officially affiliated with Anthropic.*
