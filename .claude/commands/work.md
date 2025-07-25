@@ -1,6 +1,4 @@
-Here’s the **clean, fixed‑format Markdown** for the standalone command.
 
----
 
 ````md
 ---
