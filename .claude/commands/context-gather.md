@@ -137,14 +137,6 @@ After QA passes or 3 iterations:
 2. If still uncertain, present specific questions to user
 3. Provide summary of findings and dossier location
 
-## Key Differences from Non-Working Version
-
-1. **Uses Task tool explicitly** - Each "agent" is a real subagent launched via Task
-2. **Parallel execution** - Search agents run simultaneously, not sequentially  
-3. **Clear handoffs** - Each agent receives specific inputs and produces specific outputs
-4. **True independence** - Each subagent has its own context and search space
-5. **Structured communication** - Agents pass data via clear formats (JSON, markdown)
-
 ## Example Execution Flow
 
 ```
@@ -172,4 +164,4 @@ Key findings:
 - Quick fix available in utils/validators.py
 ```
 
-This approach creates true multi-agent behavior with independent, parallel execution - just like the working Multi-Mind command!/
+
