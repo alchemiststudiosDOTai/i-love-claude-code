@@ -1,11 +1,13 @@
 ---
-description: Multi-agent context gatherer using Task tool for true parallel execution
+description: Multi-agent context gatherer using Task tool for MANDATORY parallel execution
 allowed-tools: Task(*), Bash(*), Read(*), Edit(*), WebSearch(*)
 ---
 
 # /context/gather — True Multi-Agent Context Collector
 
-Gather comprehensive context about an issue/bug/feature using parallel subagents.
+Gather comprehensive context about an issue/bug/feature using STRICTLY PARALLEL subagents.
+
+**CRITICAL RULE**: You MUST NOT code. You are STRICTLY an agent manager who deploys agents IN PARALLEL to gather context. Sequential agent execution is FORBIDDEN. 
 
 **Usage**: `/context/gather "description of issue"`
 
@@ -13,10 +15,10 @@ Gather comprehensive context about an issue/bug/feature using parallel subagents
 
 ### Phase 1: Planning Agent
 
-First, I'll analyze your request and create a search plan:
+First, analyze the request and create a search plan:
 
 ```
-If the request is unclear, I'll ask for:
+If the request is unclear, ask for:
 - Which service/module/file area?
 - Exact error messages or symptoms?
 - Environment (dev/staging/prod)?
@@ -39,61 +41,82 @@ Format as JSON for easy parsing by other agents."
 
 ### Phase 2: Parallel Search Agents
 
-After receiving the plan, launch multiple specialized search agents in parallel:
+**CRITICAL**: After receiving the plan, you MUST launch EXACTLY 2 specialized search agents IN PARALLEL. Sequential execution is FORBIDDEN - both agents MUST be launched simultaneously in a single message with multiple Task tool invocations.
 
 ```
-Task 1: "Code Search Agent"
+Task 1: "Code & System Agent"
 Prompt: "Using this search plan: [PLAN_OUTPUT]
-Execute code searches using:
-- rg -n -S 'patterns' for symbol searching
-- git grep for version-controlled content
-- fd for file discovery
-Focus on finding implementations, usages, and dependencies.
+COMPREHENSIVELY investigate ALL code and system aspects:
+- Execute code searches using rg -n -S for symbol searching
+- Use git grep for version-controlled content
+- Use fd for file discovery
+- Find ALL implementations, usages, and dependencies
+- Examine ALL test files related to the issue
+- Investigate ALL configuration files
+- Check ALL environment variables
+- Review CI/CD configurations
+- Analyze database migrations if applicable
+- Include current test status and coverage
 Return findings with file paths and line numbers."
 
-Task 2: "Documentation Agent"  
+Task 2: "Documentation & Analysis Agent"  
 Prompt: "Using this search plan: [PLAN_OUTPUT]
-Search for and analyze:
-- README files
-- API documentation
+THOROUGHLY search and analyze ALL documentation:
+- README files at all levels
+- API documentation and specifications
 - OpenAPI/Swagger specs
-- Architecture docs
-- Comments in code
-Use Read() for large files, WebSearch for external docs."
-
-Task 3: "Test & Config Agent"
-Prompt: "Using this search plan: [PLAN_OUTPUT]
-Investigate:
-- Test files related to the issue
-- Configuration files
-- Environment variables
-- CI/CD configurations
-- Database migrations
-Include current test status if available."
-
-Task 4: "Logs & Runtime Agent"
-Prompt: "Using this search plan: [PLAN_OUTPUT]
-If applicable, examine:
-- Error logs
-- Stack traces
-- Performance metrics
-- Runtime configurations
-- Deployment histories"
+- Architecture and design docs
+- Code comments and docstrings
+- Wiki pages if available
+- Change logs and release notes
+- Any technical documentation
+Use Read() for large files, WebSearch for external docs.
+Analyze patterns and provide insights on system behavior."
 ```
 
-### Phase 3: Synthesis Agent
+**ENFORCEMENT**: These agents MUST be launched together in ONE message. NEVER launch them sequentially. The power of this command comes from TRUE PARALLEL EXECUTION. Only use web search if you absolutely need to. If it doesn't relate to the issue, do not use web search.
 
-Once all search agents complete:
+### Phase 3: QA & Validation
+
+**IMMEDIATELY** after both agents complete, launch a QA agent to validate findings:
+
+```
+Task: "QA Validation Agent"
+Prompt: "Review the combined findings from BOTH parallel agents:
+[CODE_SYSTEM_FINDINGS]
+[DOCUMENTATION_ANALYSIS_FINDINGS]
+
+Validate comprehensiveness by checking for:
+- Inconsistencies or contradictions between findings
+- Missing critical information
+- Stale or incorrect file paths
+- Gaps in understanding
+- Unexamined areas that need investigation
+
+Output a validation report with:
+1. Confidence score (0-100)
+2. Specific gaps found
+3. Recommended additional searches if needed
+4. Areas requiring clarification"
+```
+
+If confidence < 80, iterate up to 3 times:
+- Launch targeted search agents IN PARALLEL for specific gaps
+- Update findings
+- Re-run QA validation
+
+### Phase 4: Synthesis Agent
+
+Once QA validation passes or after 3 iterations:
 
 ```
 Task: "Context Synthesis Agent"
-Prompt: "You have context findings from 4 search agents: 
-[CODE_FINDINGS]
-[DOC_FINDINGS]
-[TEST_CONFIG_FINDINGS]
-[LOGS_RUNTIME_FINDINGS]
+Prompt: "You have validated context findings from 2 parallel search agents: 
+[CODE_SYSTEM_FINDINGS]
+[DOCUMENTATION_ANALYSIS_FINDINGS]
+[QA_VALIDATION_REPORT]
 
-Create a comprehensive context dossier with:
+Create a COMPREHENSIVE context dossier with:
 1. Executive Summary
 2. System Architecture (relevant parts)
 3. Key Files & Their Roles
@@ -101,34 +124,12 @@ Create a comprehensive context dossier with:
 5. Relevant APIs & Endpoints
 6. Configuration Details
 7. Test Coverage Analysis
-8. Open Questions
+8. Documentation Insights
+9. Open Questions & Next Steps
 
+Format as markdown with clear sections.
 Save to: .claude/context/context-{slug}-{date}.md"
 ```
-
-### Phase 4: QA & Iteration Loop
-
-Launch a QA agent to validate findings:
-
-```
-Task: "QA Validation Agent"
-Prompt: "Review this context dossier: [DOSSIER]
-Check for:
-- Inconsistencies or contradictions
-- Missing critical information
-- Stale or incorrect paths
-- Gaps in understanding
-
-Output a validation report with:
-1. Confidence score (0-100)
-2. Specific gaps found
-3. Recommended additional searches"
-```
-
-If confidence < 80, iterate up to 3 times:
-- Launch targeted search agents for specific gaps
-- Update the dossier
-- Re-run QA validation
 
 ### Phase 5: Final Output
 
@@ -140,28 +141,29 @@ After QA passes or 3 iterations:
 ## Example Execution Flow
 
 ```
-User: /context/gather "API endpoint returning 500 errors on user profile updates"
+User: /context/gather "description of issue to investigate"
+
+Claude: Analyzing the issue using the context-gather command approach.
 
 Claude: Launching Context Planning Agent...
 [Task launches, returns search plan]
 
-Claude: Launching 4 parallel search agents...
-[Tasks launch simultaneously]
+Claude: Now launching the two parallel search agents to investigate comprehensively:
+[Tasks launch SIMULTANEOUSLY in ONE message]
 
-Claude: All agents complete. Launching synthesis agent...
-[Task creates dossier]
+Claude: Both agents complete. Running QA validation to verify findings:
+[Task validates findings, may trigger parallel iterations]
 
-Claude: Running QA validation...
-[Task validates, may trigger iteration]
+Claude: QA complete. Launching synthesis agent to create comprehensive dossier:
+[Task creates comprehensive dossier]
 
 Claude: Context gathering complete!
-📄 Saved to: .claude/context/context-api-500-error-2025-01-24.md
+📄 Saved to: .claude/context/context-[issue-slug]-[date].md
 
 Key findings:
-- Root cause: Missing null check in UserProfileSerializer
-- Affected endpoints: PUT /api/v2/users/{id}/profile
-- Related test gaps: No test for null bio field
-- Quick fix available in utils/validators.py
+- Root cause identified with specific location
+- Affected components and their relationships  
+- Test coverage gaps discovered
+- Recommended implementation approach
 ```
-
 
