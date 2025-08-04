@@ -46,6 +46,13 @@ This directory contains specialized agents for various tasks. Each agent is defi
 - **Tools**: read, write, bash
 - **Use Case**: Use PROACTIVELY when code is modified, reviewed, or when clarity improvements are discussed
 
+### [code-synthesis-analyzer](code-synthesis-analyzer.md)
+- **Name**: code-synthesis-analyzer
+- **Description**: Analyzes recently implemented code changes to identify issues, inconsistencies, or areas needing fixes
+- **Color**: Green
+- **Model**: Sonnet
+- **Use Case**: When you need to verify implementation quality and identify issues that require fixing after code changes
+
 ## Usage
 
 Each agent file contains:
