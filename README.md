@@ -13,6 +13,15 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 ### Commands
 - [Creating Slash Commands](commands/creating-slash-commands.md) - Complete guide to building custom slash commands
 
+### Agents
+- [Agent Collection](agents/) - Pre-built AI agents for various development tasks
+  - Code refactoring and clarity improvements
+  - Test-driven development workflows
+  - Security analysis and orchestration
+  - Documentation generation from git diffs
+  - Technical documentation creation
+  - Web research and documentation
+
 ### Tips & Tricks
 - Context management strategies
 - Performance optimization techniques
@@ -22,6 +31,7 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 - Git workflow automation
 - CI/CD integration patterns
 - Custom hooks and scripts
+- Pre-commit hooks for automatic file synchronization
 
 ### Productivity Hacks
 - Keyboard shortcuts
@@ -33,6 +43,13 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 1. **Custom Commands**: Create your own slash commands by adding markdown files to `.claude/commands/`
 2. **Shortcuts**: Learn essential keyboard shortcuts and command patterns
 3. **Automation**: Set up hooks and integrate with your existing tools
+4. **Agents**: Browse the `agents/` directory for pre-built AI agents you can use in your projects
+
+## Repository Structure
+
+- `commands/` - Custom slash command guides and examples
+- `agents/` - Collection of specialized AI agents for development tasks
+- `.claude/` - Automatically synced directory (via pre-commit hook) containing copies of agents and commands
 
 ## Contributing
 
