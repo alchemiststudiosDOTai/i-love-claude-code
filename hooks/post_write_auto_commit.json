@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'set -euo pipefail; git add -A; if [ -z \"$(git diff --cached)\" ]; then exit 0; fi; ts=$(date +%F_%T); msg=\"chore(write): auto-commit $ts\"; files=$(git diff --cached --name-status | sed \"s/^/  • /\"); git commit -m \"$msg\" -m \"$files\";'",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+} 
