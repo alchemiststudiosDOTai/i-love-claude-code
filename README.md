@@ -12,6 +12,7 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 
 ### Commands
 - [Creating Slash Commands](commands/creating-slash-commands.md) - Complete guide to building custom slash commands
+- [Hook Configuration](hooks/) - Setup and configure Claude Code hooks for automation
 
 ### Agents
 - [Agent Collection](agents/) - Pre-built AI agents for various development tasks
@@ -32,6 +33,10 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 - CI/CD integration patterns
 - Custom hooks and scripts
 - Pre-commit hooks for automatic file synchronization
+
+### Hooks
+- [Hook Examples](hooks/) - Examples and guides for Claude Code hooks
+- [Hook Configuration Guide](.claude/hooks/) - Setting up automated hooks
 
 ### Productivity Hacks
 - Keyboard shortcuts

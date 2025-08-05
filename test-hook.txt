@@ -1,0 +1,47 @@
+Hook Testing Status and Instructions
+====================================
+
+ISSUE: PostToolUse hook for auto-commit is not triggering after Write operations
+
+WHAT WE'VE TRIED:
+1. Created hook config at .claude/hooks/post_write_auto_commit.json (incorrect location)
+2. Added hook config to .claude/settings.local.json with proper structure
+3. Hook configuration includes:
+   - Event: PostToolUse
+   - Matcher: Write
+   - Command: Auto-commit with timestamped message
+   - Timeout: 60 seconds
+
+FIXES APPLIED (2025-08-05):
+1. Removed duplicate/incorrect hook configuration from .claude/hooks/ directory
+2. Updated matcher from "Write" to "Edit|Write|MultiEdit" to catch all file modifications
+3. Added test echo hook to verify hook triggering
+4. Research findings:
+   - Known bugs with PostToolUse hooks in Claude Code
+   - Wildcard matcher "*" doesn't work (use "" instead)
+   - Exit code 1 incorrectly blocks execution
+   - Template variables like {{tool.name}} don't get replaced
+
+CURRENT CONFIGURATION:
+- Location: .claude/settings.local.json
+- Matcher: "Edit|Write|MultiEdit"
+- Two hooks configured:
+  1. Echo test hook (writes to hook-test.log)
+  2. Auto-commit hook (original git commit command)
+
+NEXT STEPS TO TEST:
+1. Restart Claude Code session (may be required for hooks to activate)
+2. Make a test edit to any file
+3. Check if hook-test.log file is created
+4. Check git log for auto-commit
+5. If hooks still don't work:
+   - Try using PreToolUse instead of PostToolUse
+   - Test with desktop app vs web version
+   - Use /hooks slash command for interactive configuration
+
+VERIFICATION COMMANDS:
+- Check hook log: cat hook-test.log
+- Check git commits: git log --oneline -5
+- Check git status: git status --short
+
+NOTE: Based on research, session restart may be required after hook configuration changes
