@@ -436,6 +436,68 @@ Document each hook's purpose, expected behavior, and any dependencies. Include e
 
 Start with simple, well-tested hooks and gradually increase complexity. Begin with a basic formatter, add security validations, then implement notifications and advanced workflows. This incremental approach reduces the risk of breaking your development flow while building powerful automation.
 
+## Working example: Auto-commit hook
+
+Here's a proven auto-commit hook configuration that automatically commits changes after file edits:
+
+**Configuration in `.claude/settings.local.json`:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'set -euo pipefail; git add -A; if [ -z \"$(git diff --cached)\" ]; then exit 0; fi; ts=$(date +%F_%T); msg=\"chore(write): auto-commit $ts\"; files=$(git diff --cached --name-status | sed \"s/^/  • /\"); git commit -m \"$msg\" -m \"$files\";'",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+This hook:
+- Triggers after any file edit operation
+- Automatically stages all changes with `git add -A`
+- Checks if there are actual changes to commit
+- Creates a timestamped commit message
+- Lists changed files in the commit body
+- Uses proper error handling with `set -euo pipefail`
+
+## Common pitfalls and solutions
+
+**Hook location mistakes**: Place hook configurations in `.claude/settings.json` or `.claude/settings.local.json`, NOT in `.claude/hooks/` directory. The hooks directory is for hook scripts, not configurations.
+
+**Matcher pattern issues**: 
+- Use `"Edit|Write|MultiEdit"` to catch all file modifications
+- Empty string `""` matches all tools (not `"*"` which doesn't work)
+- Tool names are case-sensitive
+
+**Template variable problems**: Template variables like `{{tool.name}}` don't get replaced in current versions. Use environment variables instead:
+- `$CLAUDE_FILE_PATHS` - Files being edited
+- `$CLAUDE_PROJECT_DIR` - Project root directory
+- `$CLAUDE_TOOL_NAME` - Name of the tool being used
+
+**Session restart requirements**: After modifying hook configurations, you may need to restart your Claude Code session for changes to take effect. The system captures hook snapshots at startup.
+
+**Exit code confusion**: 
+- Exit code 0 = success (hook output shown to user)
+- Exit code 2 = blocking error (stderr sent to Claude as feedback)
+- Other codes = non-blocking error (stderr shown to user)
+
+**Testing hooks**: Create a simple echo hook first to verify the system is working:
+```json
+{
+  "type": "command",
+  "command": "echo 'Hook triggered!' >> /tmp/claude-hook-test.log",
+  "timeout": 10
+}
+```
+
 ## The transformative power of deterministic automation
 
 Claude Code hooks transform probabilistic AI assistance into deterministic development automation. By encoding your team's best practices, security requirements, and workflow preferences as hooks, you create an AI assistant that not only understands your codebase but reliably follows your exact specifications every time.
