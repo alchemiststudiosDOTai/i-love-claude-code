@@ -554,6 +554,60 @@ mkdir -p .claude/commands/{python,web,devops}
 3. Access commands using: `/command-name` or `/category/command-name`
 4. Customize the `$ARGUMENTS` handling for your specific needs
 
+## Quality of Life Commands
+
+### 7. Context Management: Context Compact
+
+**File**: `context-compact.md`
+
+Intelligently compress context when approaching token limits while preserving essential information for task continuation.
+
+**Use cases**:
+- When Claude Code's context is getting full
+- Before starting a new session to preserve state
+- When switching between complex tasks
+
+**Example**:
+```bash
+/context-compact "implementing OAuth2 authentication flow"
+```
+
+### 8. Linear Integration: Continue Debugging
+
+**File**: `linear-continue-debugging.md`
+
+Systematic debugging approach for Linear issues using scientific method and advanced tooling.
+
+**Features**:
+- Automatic issue context retrieval from Linear
+- Sequential thinking for hypothesis generation
+- Deep library understanding via DeepWiki
+- Root cause analysis methodology
+- Automatic documentation of findings
+
+**Example**:
+```bash
+/linear-continue-debugging "TEAM-123"
+```
+
+### 9. Linear Integration: Continue Work
+
+**File**: `linear-continue-work.md`
+
+Seamlessly resume work on Linear issues by understanding current state and planning next steps.
+
+**Features**:
+- Automatic branch and issue detection
+- Progress assessment from git history
+- Blocker identification
+- Next action generation
+- Linear comment updates with progress
+
+**Example**:
+```bash
+/linear-continue-work "user authentication feature"
+```
+
 ## Command Composition
 
 These commands can be combined for complex workflows:
@@ -566,6 +620,14 @@ These commands can be combined for complex workflows:
 # Example: Create React component, then convert to PWA
 /web/react-component "Dashboard"
 /web/pwa-convert "dashboard-app"
+
+# Example: Debug issue, then continue work after fix
+/linear-continue-debugging "TEAM-456"
+/linear-continue-work "TEAM-456"
+
+# Example: Compact context before switching tasks
+/context-compact "current feature implementation"
+/linear-continue-work "new priority bug"
 ```
 
 Remember to adapt these commands to your specific tech stack and team conventions while maintaining the structured workflow approach that makes them powerful and reliable.
