@@ -55,6 +55,8 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 - `commands/` - Custom slash command guides and examples
 - `agents/` - Collection of specialized AI agents for development tasks
 - `.claude/` - Automatically synced directory (via pre-commit hook) containing copies of agents and commands
+- `prompts/` - Example prompts and CLAUDE.md templates
+  - `CLAUDE_EXAMPLE.md` - Generic CLAUDE.md template (keep under 150 lines!)
 
 ## Contributing
 
