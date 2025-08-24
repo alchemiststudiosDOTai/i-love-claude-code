@@ -122,11 +122,15 @@ Phase 1: Core Authentication Setup
 ```
 
 ### Validation Checklist
+- [ ] **Git worktree created with issue name**
+- [ ] **All work done in worktree directory**
 - [ ] Each subphase has clear deliverable
 - [ ] Lint/typecheck only new code
 - [ ] Build passes before commit
 - [ ] Commit message follows convention
 - [ ] Documentation updated at phase end
+- [ ] **NO merge to main branch**
+- [ ] **NO push operations**
 - [ ] No operations outside worktree
 
 ### Key Benefits
