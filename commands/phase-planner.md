@@ -92,9 +92,14 @@ After all Phase 1 subphases complete:
 ### Example Usage
 
 ```bash
-/phase-planner "Add user authentication with JWT tokens"
+/phase-planner "Add user authentication with JWT tokens" "issue-auth-jwt"
 
 # Claude Code will:
+# 1. Create worktree:
+!git worktree add ./issue-auth-jwt -b issue-auth-jwt
+!cd issue-auth-jwt
+
+# 2. Implement Phase 1:
 Phase 1: Core Authentication Setup
 ├── 1.1: Create auth middleware
 │   ├── Implement middleware
