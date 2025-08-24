@@ -1,11 +1,20 @@
 # Phase Planner Shortcut
 
-A systematic workflow command for implementing features in phases with automatic commits after each subphase.
+A systematic workflow command for implementing features in phases with automatic commits after each subphase using a git worktree.
 
 ## Command: `/phase-planner`
 
 ### Purpose
-Implements features through structured phases, with automatic linting, typechecking, building, and committing after each subphase completion.
+Implements features through structured phases, with automatic linting, typechecking, building, and committing after each subphase completion using a git worktree.
+
+**CRITICAL REQUIREMENTS:**
+- **MUST use git worktree** for implementation
+- Worktree name = issue name (e.g., `issue-1`)
+- Create worktree in same directory as issue file
+- Commit after EACH subphase completion
+- **NEVER merge to main branch**
+- **NEVER push outside the worktree**
+- Violation of these rules will result in PUNISHMENT
 
 ### Workflow Pattern
 ```
