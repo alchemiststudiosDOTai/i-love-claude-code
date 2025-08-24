@@ -39,7 +39,14 @@ Phase 1
 ### Command Implementation
 
 ```yaml
-/phase-planner [feature-description]
+/phase-planner [feature-description] [issue-name]
+
+# Worktree Setup (MANDATORY)
+1. Identify issue name (e.g., "issue-1")
+2. Create git worktree:
+   - !git worktree add ./[issue-name] -b [issue-name]
+   - cd into worktree directory
+3. All work MUST happen in this worktree
 
 # Phase Planning
 1. Analyze the feature request
