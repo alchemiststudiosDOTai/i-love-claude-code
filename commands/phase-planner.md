@@ -78,12 +78,15 @@ After all Phase 1 subphases complete:
   - Commit documentation changes
 
 # Important Rules
-- Stay in current worktree only
-- No git push operations
+- **MUST use git worktree** (named after issue)
+- Stay in worktree directory only
+- **NO merge to main branch**
+- **NO git push operations**
 - Only work on Phase 1
 - Stop after each subphase completion
 - Only lint/typecheck NEW code
 - Commit after each successful subphase
+- **PUNISHMENT for violating worktree rules**
 ```
 
 ### Example Usage
