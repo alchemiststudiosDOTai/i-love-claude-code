@@ -50,6 +50,15 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 3. **Automation**: Set up hooks and integrate with your existing tools
 4. **Agents**: Browse the `agents/` directory for pre-built AI agents you can use in your projects
 
+## Download Directories
+
+```bash
+wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudiosDOTai/i-love-claude-code/tree/main/commands/
+wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudiosDOTai/i-love-claude-code/tree/main/agents/
+wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudiosDOTai/i-love-claude-code/tree/main/hooks/
+wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudiosDOTai/i-love-claude-code/tree/main/scripts/
+```
+
 ## Repository Structure
 
 - `commands/` - Custom slash command guides and examples
