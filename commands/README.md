@@ -702,6 +702,26 @@ Seamlessly resume work on Linear issues by understanding current state and plann
 /linear-continue-work "user authentication feature"
 ```
 
+### 12. GitHub Integration: CodeRabbitAI Issue Analysis
+
+**File**: `coderabbitai.md`
+
+Normalize GitHub issues by requesting structured analysis from @coderabbitai with comprehensive research-style documentation.
+
+**Features**:
+- Automated GitHub issue context gathering
+- Structured @coderabbitai tagging with research template
+- Integration with existing project workflow
+- Comprehensive validation and rollback procedures
+- Quality assurance through structured analysis format
+
+**Example**:
+```bash
+/coderabbitai "123"
+```
+
+**Output**: GitHub issue tagged with @coderabbitai receives structured research analysis including relevant files, patterns, knowledge gaps, and references.
+
 ## Command Composition
 
 These commands can be combined for complex workflows:
@@ -737,6 +757,17 @@ These commands can be combined for complex workflows:
 # Example: Compact context before switching tasks
 /context-compact "current feature implementation"
 /linear-continue-work "new priority bug"
+
+# Example: GitHub issue analysis and implementation workflow
+/coderabbitai "456"
+/research-codebase "issue findings from @coderabbitai analysis"
+/plan-from-research "memory-bank/research/2024-01-15_github-issue.md"
+/execute-plan "memory-bank/plan/2024-01-15_issue-implementation.md"
+
+# Example: Issue analysis with quality assurance
+/coderabbitai "789"
+/fagan-inspection "affected code areas from issue analysis"
+/python/test-generator "src/components-needing-fixes/"
 ```
 
 Remember to adapt these commands to your specific tech stack and team conventions while maintaining the structured workflow approach that makes them powerful and reliable.

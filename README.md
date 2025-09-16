@@ -11,12 +11,13 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 ## Contents
 
 ### Commands
-- [Comprehensive Command Suite](commands/README.md) - 11 production-ready slash commands for Python, web dev, DevOps, context engineering, and QA
+- [Comprehensive Command Suite](commands/README.md) - 12 production-ready slash commands for Python, web dev, DevOps, context engineering, QA, and GitHub integration
 - **Context Engineering Workflow** - Research-Plan-Execute workflow with memory-bank integration
 - **Fagan Inspection** - Formal code inspection for defect analysis without fixes
 - **Context Compact** - Intelligently compress context when approaching token limits
 - **Linear Continue Debugging** - Systematic debugging approach for Linear issues
 - **Linear Continue Work** - Resume work on Linear issues by understanding current state
+- **CodeRabbitAI Issue Analysis** - Normalize GitHub issues by requesting structured analysis from @coderabbitai
 - **Phase Planner** - Strategic project planning with phases and milestones
 
 ### Aliases
