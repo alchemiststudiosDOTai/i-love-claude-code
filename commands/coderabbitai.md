@@ -1,8 +1,8 @@
-
 ---
 allowed-tools: View, Edit
 description: Normalize a GitHub issue by asking @coderabbitai to outline and structure it
 ---
+
 
 # CodeRabbitAI Issue Analysis
 
