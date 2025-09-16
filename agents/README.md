@@ -53,6 +53,29 @@ This directory contains specialized agents for various tasks. Each agent is defi
 - **Model**: Sonnet
 - **Use Case**: When you need to verify implementation quality and identify issues that require fixing after code changes
 
+### [codebase-analyzer](codebase-analyzer.md)
+- **Name**: codebase-analyzer
+- **Description**: Analyzes codebase implementation details. Call when you need to find detailed information about specific components
+- **Tools**: Read, Grep, Glob, LS
+- **Use Case**: When you need to understand HOW code works, trace data flow, and explain technical workings with precise file:line references
+- **Credit**: Inspired by [HumanLayer](https://github.com/humanlayer)
+
+### [codebase-locator](codebase-locator.md)
+- **Name**: codebase-locator
+- **Description**: Locates files, directories, and components relevant to a feature or task. A "Super Grep/Glob/LS tool"
+- **Tools**: Grep, Glob, LS
+- **Use Case**: When you need to find WHERE code lives in a codebase - use if you find yourself wanting to use grep/glob/ls tools more than once
+- **Credit**: Inspired by [HumanLayer](https://github.com/humanlayer)
+
+### [memory-profiler](memory-profiler.md)
+- **Name**: memory-profiler
+- **Description**: Memory profiling specialist for identifying leaks, inefficiencies, and optimization opportunities
+- **Tools**: Bash, Read, Grep, Glob
+- **Model**: Sonnet
+- **Color**: Green
+- **Use Case**: Use proactively to analyze memory usage patterns during actual code execution
+- **Credit**: made by https://x.com/alxfazio 
+
 ## Usage
 
 Each agent file contains:

@@ -1,6 +1,6 @@
 # Comprehensive Claude Code Slash Commands Suite
 
-Based on extensive analysis of best practices from the Claude Code community, I've created a powerful suite of slash commands that incorporate structured workflows, context awareness, and practical developer needs across Python, web development, and DevOps domains.
+Based on extensive analysis of best practices from the Claude Code community, I've created a powerful suite of slash commands that incorporate structured workflows, context awareness, and practical developer needs across Python, web development, DevOps, context engineering, and quality assurance domains.
 
 ## Core Design Principles Applied
 
@@ -547,16 +547,110 @@ These commands follow the proven patterns from the Claude Code community:
 
 1. Create the `.claude/commands/` directory structure in your project:
 ```bash
-mkdir -p .claude/commands/{python,web,devops}
+mkdir -p .claude/commands/{python,web,devops,context-engineering,quality-assurance}
 ```
 
 2. Save each command as a `.md` file in the appropriate subdirectory
 3. Access commands using: `/command-name` or `/category/command-name`
 4. Customize the `$ARGUMENTS` handling for your specific needs
 
+### 7. Context Engineering: Research-Plan-Execute Workflow
+
+**credit**:
+https://github.com/humanlayer
+https://www.youtube.com/watch?v=IS_y40zY-hc&ab_channel=YCRootAccess
+
+This comprehensive three-command workflow enables systematic codebase research, planning, and execution with full traceability and documentation.
+
+#### 7a. Research Codebase
+
+**File**: `context-engineering/research.md`
+
+Conducts comprehensive research across the codebase using parallel sub-agents to answer user questions and document findings.
+
+**Features**:
+- Spawns up to 3 parallel sub-agents (codebase-locator, codebase-analyzer, context-synthesis)
+- Creates structured research documents in `memory-bank/research/`
+- Includes GitHub permalinks for permanent references
+- Supports follow-up questions and iterative research
+- Comprehensive file analysis with full context reading
+
+**Example**:
+```bash
+/research-codebase "How does user authentication work across the system?"
+```
+
+**Output**: Structured research document with findings, patterns, knowledge gaps, and references.
+
+#### 7b. Plan From Research
+
+**File**: `context-engineering/plan.md`
+
+Generates executable implementation plans from research documents with milestones, tasks, gates, and acceptance criteria.
+
+**Features**:
+- Creates detailed implementation plans in `memory-bank/plan/`
+- Includes Definition of Done (DoD) and Definition of Ready (DoR)
+- Risk assessment and mitigation strategies
+- Quality gates and validation checkpoints
+- Test strategy and security considerations
+- Rollout planning with feature flags
+
+**Example**:
+```bash
+/plan-from-research "memory-bank/research/2024-01-15_auth-system.md"
+```
+
+**Output**: Comprehensive execution plan with milestones, tasks, and success criteria.
+
+#### 7c. Execute Plan
+
+**File**: `context-engineering/execute.md`
+
+Executes implementation plans with atomic commits, quality gates, and comprehensive logging.
+
+**Features**:
+- Task-by-task implementation with atomic commits
+- Real-time execution logging in `memory-bank/execute/`
+- Quality gate enforcement (tests, coverage, type checking)
+- Rollback points and recovery procedures
+- Post-deployment verification
+- Sub-agent validation (codebase-analyzer, antipattern-sniffer, context-synthesis)
+
+**Example**:
+```bash
+/execute-plan "memory-bank/plan/2024-01-15_auth-implementation.md"
+```
+
+**Output**: Complete execution log with outcomes, gate results, and next steps.
+
+### 8. Quality Assurance: Fagan Inspection
+
+**File**: `fagan-inspection.md`
+
+Performs formal Fagan-style code inspection for comprehensive defect analysis without implementing fixes.
+
+**Features**:
+- Structured defect identification using inspection methodology
+- Parallel sub-agent analysis for comprehensive coverage
+- Analysis-only approach - no code changes
+- Detailed defect logging with severity rankings
+- Handoff preparation for remediation agents
+- Tech-agnostic approach for code, designs, specs, runbooks
+
+**Example**:
+```bash
+/fagan-inspection "src/auth/login.py authentication flow"
+```
+
+**Success Criteria**:
+- Comprehensive defect analysis with full documentation
+- Parallel sub-agent analysis with rationale
+- Structured results ready for remediation handoff
+
 ## Quality of Life Commands
 
-### 7. Context Management: Context Compact
+### 9. Context Management: Context Compact
 
 **File**: `context-compact.md`
 
@@ -572,7 +666,7 @@ Intelligently compress context when approaching token limits while preserving es
 /context-compact "implementing OAuth2 authentication flow"
 ```
 
-### 8. Linear Integration: Continue Debugging
+### 10. Linear Integration: Continue Debugging
 
 **File**: `linear-continue-debugging.md`
 
@@ -590,7 +684,7 @@ Systematic debugging approach for Linear issues using scientific method and adva
 /linear-continue-debugging "TEAM-123"
 ```
 
-### 9. Linear Integration: Continue Work
+### 11. Linear Integration: Continue Work
 
 **File**: `linear-continue-work.md`
 
@@ -621,9 +715,24 @@ These commands can be combined for complex workflows:
 /web/react-component "Dashboard"
 /web/pwa-convert "dashboard-app"
 
+# Example: Full research-to-implementation workflow
+/research-codebase "payment processing system"
+/plan-from-research "memory-bank/research/2024-01-15_payment-system.md"
+/execute-plan "memory-bank/plan/2024-01-15_payment-implementation.md"
+
+# Example: Quality assurance workflow
+/fagan-inspection "src/payment/processor.py payment validation"
+/research-codebase "payment security patterns"
+/plan-from-research "memory-bank/research/2024-01-15_payment-security.md"
+
 # Example: Debug issue, then continue work after fix
 /linear-continue-debugging "TEAM-456"
 /linear-continue-work "TEAM-456"
+
+# Example: Comprehensive testing after implementation
+/execute-plan "memory-bank/plan/2024-01-15_feature-plan.md"
+/python/test-generator "src/new-feature/"
+/fagan-inspection "src/new-feature/ code quality review"
 
 # Example: Compact context before switching tasks
 /context-compact "current feature implementation"

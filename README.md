@@ -11,17 +11,28 @@ This repository is a collection of practical tips, tricks, and guides for gettin
 ## Contents
 
 ### Commands
-- [Creating Slash Commands](commands/creating-slash-commands.md) - Complete guide to building custom slash commands
-- [Hook Configuration](hooks/) - Setup and configure Claude Code hooks for automation
+- [Comprehensive Command Suite](commands/README.md) - 11 production-ready slash commands for Python, web dev, DevOps, context engineering, and QA
+- **Context Engineering Workflow** - Research-Plan-Execute workflow with memory-bank integration
+- **Fagan Inspection** - Formal code inspection for defect analysis without fixes
+- **Context Compact** - Intelligently compress context when approaching token limits
+- **Linear Continue Debugging** - Systematic debugging approach for Linear issues
+- **Linear Continue Work** - Resume work on Linear issues by understanding current state
+- **Phase Planner** - Strategic project planning with phases and milestones
+
+### Aliases
+- [Claude Code Aliases](alias/) - Useful aliases and integrations including Z.AI GLM 4.5 integration
 
 ### Agents
 - [Agent Collection](agents/) - Pre-built AI agents for various development tasks
-  - Code refactoring and clarity improvements
-  - Test-driven development workflows
-  - Security analysis and orchestration
-  - Documentation generation from git diffs
-  - Technical documentation creation
-  - Web research and documentation
+  - **Code refactoring** - Clarity improvements and refactoring rules
+  - **Test-driven development** - TDD workflows for Python
+  - **Security analysis** - Comprehensive security investigations and orchestration
+  - **Documentation generation** - Creates docs from git diffs and changes
+  - **Technical documentation** - Multi-stage research and synthesis
+  - **Web research** - Searches for official documentation and updates
+  - **Codebase analyzer** - Analyzes implementation details with precise file:line references
+  - **Codebase locator** - Finds WHERE code lives using advanced search patterns
+  - **Memory profiler** - Identifies memory leaks and optimization opportunities
 
 ### Tips & Tricks
 - Context management strategies
@@ -61,7 +72,8 @@ wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudio
 
 ## Repository Structure
 
-- `commands/` - Custom slash command guides and examples
+- `commands/` - Custom slash command guides and examples including context engineering workflow
+- `alias/` - Useful aliases and integrations (Z.AI GLM 4.5, etc.)
 - `agents/` - Collection of specialized AI agents for development tasks
 - `.claude/` - Automatically synced directory (via pre-commit hook) containing copies of agents and commands
 - `prompts/` - Example prompts and CLAUDE.md templates
@@ -96,4 +108,3 @@ Share your experiences, ask questions, and connect with other Claude Code users:
 
 ---
 
-*This repository is community-maintained and not officially affiliated with Anthropic.*
