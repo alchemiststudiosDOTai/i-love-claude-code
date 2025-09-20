@@ -1,163 +1,71 @@
+---
+allowed-tools: View, Bash(git:_), Bash(sed:_), Bash(awk:\*)
+Non-destructivecription: Stage all changes, generate
+---
+
 # Smart Git Commit & Push
 
-Stage all local changes, create a commit message that documents local vs remote diffs, commit, and push upstream.
+## Objectives
 
-## Execution Steps
+- Create a single commit that embeds the change in formatted way to the commit message.
+- Push to the same branch we are on now.
+- Exit cleanly with clear status.
 
-### 1. Fetch & Diff
-- Get current branch:  
-  ```bash
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  ```
-- Fetch remote updates:  
-  ```bash
-  git fetch origin $BRANCH
-  ```
-- Gather diff summary:  
-  ```bash
-  DIFF_STAT=$(git diff origin/$BRANCH --stat)
-  ```
-- Gather detailed diff (limited for readability):  
-  ```bash
-  DIFF_DETAIL=$(git diff origin/"$BRANCH" --unified=3 | head -n 200)
-  ```
+## Guardrails
 
-### 2. Stage Changes
-- Stage everything:  
-  ```bash
-  git add .
-  ```
+- Never run destructive operations (no hard resets, no forced pushes).
+- If no working-tree changes exist, report “no local changes” and stop.
+- Default `MAX_LINES` for the inline diff is 200 lines.
 
-### 3. Commit with Inline Diffs
-```bash
-git commit -m "Sync local changes with remote on branch $BRANCH
+## Workflow
 
-Changes Summary:
-$DIFF_STAT
+### 1) Context Gathering
 
-Detailed Diffs (first 200 lines):
-$DIFF_DETAIL
+- Determine repository root; if not a Git repo, stop with a helpful message.
+- Determine the current branch and store as `BRANCH`.
+- Check whether an upstream tracking ref exists; note as `HAS_UPSTREAM` (yes/no).
+- Capture ahead/behind status relative to upstream if present.
 
-(All local changes staged and pushed by smart-commit)"
-```
+### 2) Pre-commit Diff Snapshot (vs origin/BRANCH)
 
-### 4. Push
+- Compute a file-level diff summary and store as `DIFF_STAT`.
+- Compute a unified diff (context 3) and truncate to `MAX_LINES`; store as `DIFF_DETAIL`.
 
-* Push branch upstream:
-  ```bash
-  git push origin $BRANCH
-  ```
+### 3) Stage Changes
 
-### 5. Error Handling
+- If there are no local changes, report and stop.
+- Stage all modifications, additions, and deletions.
 
-* If push fails due to remote ahead → auto-rebase & retry:
-  ```bash
-  git pull --rebase origin $BRANCH && git push origin $BRANCH
-  ```
-  if it still fails, alert the user and wait for next steps. 
+### 4) Construct Commit Message
 
-## Success Criteria
+- always commit liek "feature:" "test:" "chore:" etc use common sense.
+- Title: “Smart commit on {BRANCH}”.
+- Body sections:
 
-* Commit message contains file-level stats + truncated diff
-* All local changes staged and committed
-* Remote branch up to date w
-* If push fails due to remote ahead → auto-rebase & retry:
-  ```bash
-  git pull --rebase origin $BRANCH && git push origin $BRANCH
-  ```
-  if it still fails, alert the user and wait for next steps. 
+  - “Changes Summary:” followed by `DIFF_STAT`.
+  - “Detailed Diffs (first {MAX_LINES} lines):” followed by `DIFF_DETAIL`.
+  - Footer: “All local changes staged and pushed by smart-commit”.
+
+### 5) Commit
+
+- Assume the user wants to git add .
+- Create the commit using the constructed message.
+
+### 6) Push
+
+- when the commit hooks pass, then push
+- if the pre-commit hooks fail, take a deep breath, if it is NOT on MASTER you can run -n to skip them
+- if the branch is MASTER you MUST NOT push alert the user
+- alwasy confirm the pre-commit hooks status before pushing
+
+## Validation
+
+- Confirm the last commit message includes both “Changes Summary:” and “Detailed Diffs”.
+- Confirm working tree is clean after push.
+- Report final ahead/behind status; success means local and remote are synchronized.
 
 ## Success Criteria
 
-* Commit message contains file-level stats + truncated diff
-* All local changes staged# Smart Git Commit & Push
-
-Stage all local changes, create a commit message that documents local vs remote diffs, commit, and push upstream.
-
-## Execution Steps
-
-### 1. Fetch & Diff
-- Get current branch:  
-  ```bash
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  ```
-- Fetch remote updates:  
-  ```bash
-  git fetch origin $BRANCH
-  ```
-- Gather diff summary:  
-  ```bash
-  DIFF_STAT=$(git diff origin/$BRANCH --stat)
-  ```
-- Gather detailed diff (limited for readability):  
-  ```bash
-  DIFF_DETAIL=$(git diff origin/"$BRANCH" --unified=3 | head -n 200)
-  ```
-
-### 2. Stage Changes
-- Stage everything:  
-  ```bash
-  git add .
-  ```
-
-### 3. Commit with Inline Diffs
-```bash
-git commit -m "Sync local changes with remote on branch $BRANCH
-
-Changes Summary:
-$DIFF_STAT
-
-Detailed Diffs (first 200 lines):
-$DIFF_DETAIL
-
-(All local changes staged and pushed by smart-commit)"
-```
-
-### 4. Push
-
-* Push branch upstream:
-  ```bash
-  git push origin $BRANCH
-  ```
-
-### 5. Error Handling
-
-* If push fails due to remote ahead → auto-rebase & retry:
-  ```bash
-  git pull --rebase origin $BRANCH && git push origin $BRANCH
-  ```
-  if it still fails, alert the user and wait for next steps. 
-
-## Success Criteria
-
-* Commit message contains file-level stats + truncated diff
-* All local changes staged and committed
-* Remote branch up to date with local
-
-This way the **commit message itself** contains:  
-- File-level summary (`git diff --stat`)  
-- Inline diff (truncated for readability, e.g., 200 lines)  
-- A fallback note explaining that everything was staged/pushed.  
-
----
-
-
- and committed
-* Remote branch up to date with local
-
-This way the **commit message itself** contains:  
-- File-level summary (`git diff --stat`)  
-- Inline diff (truncated for readability, e.g., 200 lines)  
-- A fallback note explaining that everything was staged/pushed.  
-
-
-ith local
-
-This way the **commit message itself** contains:  
-- File-level summary (`git diff --stat`)  
-- Inline diff (truncated for readability, e.g., 200 lines)  
-- A fallback note explaining that everything was staged/pushed.  
-
----
-
+- Commit message contains file-level stats and a truncated inline diff.
+- All local changes are staged and committed.
 
