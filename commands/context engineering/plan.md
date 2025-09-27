@@ -1,6 +1,6 @@
 ---
 allowed-tools: Edit, View, Bash(git:*), Bash(python:*), Bash(pytest:*), Bash(mypy:*), Bash(black:*), Bash(npm:*), Bash(jq:*)
-description: Generates a concrete implementation plan from a research doc, with milestones, tasks, gates, risks, DoD/DoR, and acceptance tests
+description: Generates a concrete implementation plan from a research doc, with milestones, tasks, gates
 writes-to: memory-bank/plan/
 ---
 
@@ -20,9 +20,9 @@ Create an execution-ready implementation plan for: $ARGUMENTS
 - Extract: scope, constraints, key files, unresolved questions, suggested solutions, references.
 
 ## Step 2 — Freshness & Diff Check
-- Capture current git state:
-  - `git rev-parse --short HEAD`
-  - `git status --porcelain`
+- Capture current git state (if git repository exists):
+  - !`git rev-parse --git-dir 2>/dev/null && git rev-parse --short HEAD || echo "Not in a git repository"`
+  - !`git rev-parse --git-dir 2>/dev/null && git status --porcelain || echo "Not in a git repository"`
 - If code changed since research doc commit:
   - Append **"Drift Detected"** note and mark items requiring re-verification.
 
@@ -68,45 +68,26 @@ tags: [plan, <topic>]
 - Risk → Impact → Likelihood → Mitigation → Trigger
 
 ## Test Strategy
-- Unit/Property/Mutation
-- Integration/Contract
-- E2E/Smoke/Perf (thresholds)
+- At most ONE new test if more test are needed we WILL NOT do that now 
+- you will be punished for mutiple test at most ONE 
 
-## Security & Compliance
-- Secret handling, authZ/authN, threat model notes, scans to run
-
-## Observability
-- Metrics, logs, traces to emit; dashboards to add/modify
-
-## Rollout Plan
-- Env order, migration steps, feature flags, rollback triggers
-
-## Validation Gates
-- Gate A (Design sign-off)
-- Gate B (Test plan sign-off)
-- Gate C (Pre-merge quality bar)
-- Gate D (Pre-deploy checks)
-
-## Success Metrics
-- KPIs / SLOs, error budgets, perf ceilings
 
 ## References
 - Research doc sections, GitHub permalinks, tickets
 
 ## Agents
 
-- you can deploy maxium TWO subagents 
+- you can deploy maxium 3 subagents at one time and should do so
 - context-synthesis subagent
 - codebase-analyzer subagent
 
 ## Final Gate
 - Output a short summary with: plan path, milestones count, gates, and next command hint: `/execute "<plan_path>"`
 
-- this mustbe be a singualr focused plan, we cna have ONE other option in the same document but in general we MUST have a singular focused plan on execution. 
-
+- this must be be a singualr focused plan, we can have ONE other option in the same document but in general we MUST have a singular focused plan on execution. 
 
   DO NOT CODE YOU WILL BE PUNISHED FOR CODING 
 
   SAVE THE DOCUMENT YOU MUST SAVE IN THE CORRECT FORMAT FOR THE NEXT DEV
 
-  ALWAYS FOLLOW BEST PRACTISES
+  ALWAYS FOLLOW BEST PRACTISE and take a deep breath this is for execution
