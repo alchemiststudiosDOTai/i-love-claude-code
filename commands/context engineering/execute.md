@@ -58,10 +58,10 @@ For each Task (in plan order):
 
 ## Step 4 — Quality Gates (Enforced)
 - Gate C (Pre-merge):
-  - Tests pass
-  - Coverage ≥ plan threshold (e.g., 90%+ new/changed lines)
+  - Singular Tests pass
   - Type checks clean
   - Linters OK
+  - only lint and type check NEW CODE OR UPDATED CODE
   
 - If any gate FAILS → record failure + remediation then dont roll back just stop and ask the user for next steps
 
@@ -85,17 +85,6 @@ For each Task (in plan order):
 
 ### Gate Results
 - Gate C: pass/fail + evidence
-- Security: pass/fail + evidence
-- Perf/PWA (if applicable): metrics
-
-### Deployment Notes
-- Staging → Prod timestamps
-- Smoke/E2E results
-- SLO/SLA snapshot
-
-### Post-Deploy Verification
-- Error rates, latencies, dashboards screenshots/links
-- On-call runbook links
 
 ### Follow-ups
 - TODOs, tech debt, docs to update
@@ -103,7 +92,6 @@ For each Task (in plan order):
 ## Success Criteria (auto-check)
 - All planned gates passed
 - Rollout completed or rollback clean
-- KPIs/SLOs within thresholds
 - Execution log saved to `memory-bank/execute/` and linked back to Plan
 
 # Execution Report – <topic>
@@ -126,22 +114,11 @@ For each Task (in plan order):
 - Rollbacks: Y/N
 - Final status: ✅ Success | ❌ Failure
 
-## Gate Results
-- Tests: pass/fail summary
-- Coverage: X% (target Y%)
-- Type checks: pass/fail
-- Security scans: # issues
-- Perf/PWA scores: numbers
 
 ## Issues & Resolutions
 - <task ID> – <issue> → <fix>
 - <task ID> – <issue> → <rollback>
 
-## Deployment Notes
-- Staging deploy: success/fail
-- Prod deploy: success/fail
-- Smoke/E2E results
-- Observability checks
 
 ## Success Criteria
 - Which criteria met vs missed
@@ -167,7 +144,7 @@ THIS IS THE MOST IMPORTANT PART OF THIS PROMPT:MAKE THE DOCUMENT AND UPDATE AS Y
 
 AFTER THE WORK IS DONE 
 
-DEPLOY 3 SUBAGENTS at most
+DEPLOY 2 SUBAGENTS at most to QA your WORK
 
 - codebase-analyzer to outline your code changes in relation to the codebase 
 
