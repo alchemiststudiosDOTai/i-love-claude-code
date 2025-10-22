@@ -1,3 +1,9 @@
+---
+allowed-tools: View, Edit, Create, Bash(git:*), Bash(npm:*), Bash(cd:*)
+argument-hint: "[feature-description] [issue-name]"
+description: Implement features in structured phases with automatic commits using git worktree
+---
+
 # Phase Planner Shortcut
 
 A systematic workflow command for implementing features in phases with automatic commits after each subphase using a git worktree.

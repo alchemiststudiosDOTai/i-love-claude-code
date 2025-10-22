@@ -1,5 +1,6 @@
 ---
-allowed-tools: View, Edit, Bash, Git, Linear, DeepWiki, SequentialThinking
+allowed-tools: View, Edit, Bash(git:*), Grep, Glob
+argument-hint: [issue-description]
 description: Continue debugging a Linear issue with systematic analysis
 ---
 

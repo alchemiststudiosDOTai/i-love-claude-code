@@ -1,5 +1,6 @@
 ---
 allowed-tools: View, Edit
+argument-hint: [current-task-description]
 description: Prepare context for compaction when approaching token limits
 ---
 

@@ -1,3 +1,7 @@
+---
+description: Three-step workflow guide for complex tasks (research, plan, implement)
+---
+
 # Three-Step Workflow for Complex Implementation Tasks
 
 > **Credit**: This workflow methodology is inspired by [HumanLayer](https://github.com/humanlayer/humanlayer) - a powerful framework for human-in-the-loop AI applications.

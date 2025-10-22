@@ -1,7 +1,7 @@
 ---
-allowed-tools: Edit, View, Bash(git:*), Bash(python:*), Bash(pytest:*), Bash(mypy:*), Bash(black:*), Bash(npm:*), Bash(jq:*)
+allowed-tools: Edit, View, Create, Bash(git:*), Bash(python:*), Bash(pytest:*), Bash(mypy:*), Bash(black:*), Bash(npm:*), Bash(jq:*), Bash(grep:*)
+argument-hint: [research-document-path | topic]
 description: Generates a concrete implementation plan from a research doc, with milestones, tasks, gates
-writes-to: memory-bank/plan/
 ---
 
 # Plan From Research

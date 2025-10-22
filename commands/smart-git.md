@@ -1,6 +1,6 @@
 ---
-allowed-tools: View, Bash(git:_), Bash(sed:_), Bash(awk:\*)
-Non-destructivecription: Stage all changes, generate
+allowed-tools: View, Bash(git:*), Bash(sed:*), Bash(awk:*)
+description: Stage all changes and generate smart commit with inline diff
 ---
 
 # Smart Git Commit & Push

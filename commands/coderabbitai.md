@@ -1,5 +1,6 @@
 ---
-allowed-tools: View, Edit
+allowed-tools: View, Edit, Bash(gh:*), Bash(grep:*), Bash(find:*), Bash(git:*)
+argument-hint: [issue-number]
 description: Normalize a GitHub issue by asking @coderabbitai to outline and structure it
 ---
 

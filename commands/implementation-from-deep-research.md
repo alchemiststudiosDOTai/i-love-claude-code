@@ -1,3 +1,9 @@
+---
+allowed-tools: Read, View, Grep, Glob, Create, Task, TodoWrite
+argument-hint: [ticket-reference | file-path]
+description: Create detailed implementation plans from research findings
+---
+
 # Implementation Plan
 
 You are tasked with creating detailed implementation plans through an interactive, iterative process. You should be skeptical, thorough, and work collaboratively with the user to produce high-quality technical specifications.

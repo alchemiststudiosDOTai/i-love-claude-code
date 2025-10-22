@@ -1,3 +1,9 @@
+---
+allowed-tools: Read, View, Edit, Create, Bash, TodoWrite
+argument-hint: [plan-path]
+description: Execute implementation plans from research-plans/plans/ directory
+---
+
 # Implement Plan
 
 You are tasked with implementing an approved technical plan from `research-plans/plans/`. These plans contain phases with specific changes and success criteria.

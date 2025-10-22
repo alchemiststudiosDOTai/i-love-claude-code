@@ -1,3 +1,9 @@
+---
+allowed-tools: Read, View, Grep, Glob, Task, TodoWrite, Create
+argument-hint: [research-question]
+description: Research codebase comprehensively with parallel sub-agents and document findings
+---
+
 # Research Codebase
 
 You are tasked with conducting comprehensive research across the codebase to answer user questions by spawning parallel sub-agents and synthesizing their findings. All research documents must be stored in the `memory-bank/research/` directory, following the YAML frontmatter and content structure below.

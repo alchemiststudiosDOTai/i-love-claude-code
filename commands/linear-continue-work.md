@@ -1,5 +1,6 @@
 ---
-allowed-tools: View, Edit, Bash, Git, Linear
+allowed-tools: View, Edit, Bash(git:*), Grep, Glob
+argument-hint: [issue-description]
 description: Continue work on a Linear issue by understanding state and planning next steps
 ---
 
