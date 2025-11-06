@@ -1,0 +1,101 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/validate-bash.py",
+        "timeout": 5,
+        "description": "Validate bash commands for unsafe patterns",
+        "enabled": true
+      },
+      {
+        "matcher": "Write|Edit",
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/validate-bash.py",
+        "timeout": 5,
+        "description": "Add file headers to new files",
+        "enabled": true
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/post-write-context.py",
+        "timeout": 10,
+        "description": "Validate written files and check license headers",
+        "enabled": true
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/prompt-validator.py",
+        "timeout": 3,
+        "description": "Check prompts for potential secrets",
+        "enabled": true
+      }
+    ],
+    "Stop": [
+      {
+        "type": "prompt",
+        "prompt": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-guard.prompt.txt",
+        "timeout": 10,
+        "description": "LLM-based safety guard for stop requests",
+        "enabled": true,
+        "arguments": {
+          "reason": "$STOP_REASON",
+          "conversationLength": "$CONVERSATION_LENGTH",
+          "lastToolUse": "$LAST_TOOL",
+          "currentTask": "$CURRENT_TASK"
+        }
+      }
+    ],
+    "SubagentStop": [
+      {
+        "type": "prompt",
+        "prompt": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-guard.prompt.txt",
+        "timeout": 8,
+        "description": "LLM-based guard for subagent cancellation",
+        "enabled": true,
+        "arguments": {
+          "reason": "$STOP_REASON",
+          "subagentId": "$SUBAGENT_ID"
+        }
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/session-env.sh $MATCHER",
+        "timeout": 15,
+        "description": "Initialize session environment and persist state",
+        "enabled": true
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/check-style.sh",
+        "timeout": 5,
+        "description": "Check code style before compacting context",
+        "enabled": true
+      }
+    ],
+    "MCP": [
+      {
+        "matcher": "mcp__.*__write.*",
+        "command": "$CLAUDE_PROJECT_DIR/prompt-hooks/commands/post-write-context.py",
+        "timeout": 10,
+        "description": "Validate MCP write operations",
+        "enabled": false
+      }
+    ]
+  },
+  "hookDefaults": {
+    "timeout": 10,
+    "enabled": true
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Complete prompt-hooks scaffold with bash and prompt-based hooks",
+    "repository": "alchemiststudiosDOTai/i-love-claude-code"
+  }
+}
