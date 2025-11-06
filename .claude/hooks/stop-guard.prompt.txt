@@ -19,7 +19,13 @@ Decision criteria:
 - APPROVE if: User explicitly requested stop, no critical operation in progress, safe stopping point
 - BLOCK if: Critical file operation mid-write, destructive command executing, data loss risk
 
-Consider the safety of stopping at this moment. If blocking, explain what needs to complete first.
+IMPORTANT SAFETY NOTES:
+- Users should ultimately control their system - blocks should be limited to truly dangerous operations
+- Consider suggesting a brief delay (e.g., "wait 2 seconds before stopping") for non-critical operations
+- Allow emergency overrides for legitimate stop requests
+- If blocking, provide specific guidance on safe stopping conditions
+
+Consider the safety of stopping at this moment. If blocking, explain what needs to complete first and suggest safer alternatives when possible.
 
 User stop request context:
 $ARGUMENTS

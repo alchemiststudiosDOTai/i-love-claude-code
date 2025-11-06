@@ -50,7 +50,9 @@ def main():
         file_path = tool_input.get("file_path", "")
         if tool_name == "Write" and file_path.endswith(('.py', '.sh')):
             content = tool_input.get("content", "")
-            if not content.startswith("#"):
+            # Check for shebang or existing header comments
+            has_header = content.startswith(("#!", "# File:", '"""', "'''"))
+            if not has_header:
                 # Provide updatedInput to add header
                 result = {
                     "permissionDecision": "allow",

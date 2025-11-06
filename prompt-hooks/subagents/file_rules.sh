@@ -6,7 +6,7 @@ file_path="${1:-}"
 
 if [[ -z "$file_path" ]]; then
     echo "Usage: file_rules.sh <file_path>" >&2
-    exit 1
+    exit 3
 fi
 
 # Check if file exists

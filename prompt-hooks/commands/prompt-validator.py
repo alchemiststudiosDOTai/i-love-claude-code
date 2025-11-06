@@ -12,9 +12,9 @@ from datetime import datetime
 
 SECRET_PATTERNS = [
     r'(?i)(api[_-]?key|apikey)\s*[:=]\s*["\']?[a-zA-Z0-9]{20,}',
-    r'(?i)(password|passwd|pwd)\s*[:=]\s*["\'][^"\']{8,}',
+    r'(?i)(password|passwd|pwd)\s*[:=]\s*(["\'][^"\']{8,}["\']|[^\s]{8,})',
     r'sk-[a-zA-Z0-9]{32,}',  # OpenAI-style keys
-    r'ghp_[a-zA-Z0-9]{36,}',  # GitHub tokens
+    r'ghp_[a-zA-Z0-9]{36}',  # GitHub tokens (exactly 36 chars)
     r'(?i)bearer\s+[a-zA-Z0-9\-._~+/]+=*',
 ]
 

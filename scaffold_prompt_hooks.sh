@@ -94,11 +94,11 @@ import re
 def validate_bash(command: str) -> dict:
     """Check for unsafe bash patterns"""
     unsafe_patterns = [
-        (r'\bgrep\b(?!\s+--)', 'Use Grep tool instead of grep command'),
+        (r'\bgrep\b', 'Use Grep tool instead of grep command'),
         (r'\brg\b', 'Use Grep tool instead of ripgrep command'),
         (r'\bfind\b', 'Use Glob tool instead of find command'),
-        (r'\$\w+(?!["\'])', 'Unquoted variable expansion detected'),
-        (r'rm\s+-rf\s+/(?!tmp|var)', 'Dangerous rm -rf on root directory'),
+        (r'\$\w+\b(?!["\'])', 'Unquoted variable expansion - ensure variables are quoted'),
+        (r'rm\s+-rf\s+/', 'Dangerous rm -rf on root paths'),
     ]
 
     for pattern, reason in unsafe_patterns:
@@ -520,6 +520,8 @@ echo "✓ Created examples/minimal-*.sh"
 
 # ============================================================
 # .claude/settings.json - Complete hook configuration
+# NOTE: This scaffold script is the source of truth for settings.json.
+# The standalone .claude/settings.json file should not be edited separately.
 # ============================================================
 
 cat <<'EOF' > .claude/settings.json
@@ -895,7 +897,7 @@ self_test() {
 
     echo ""
     echo "4. Executable permissions:"
-    find prompt-hooks -type f \( -name "*.sh" -o -name "*.py" \) -executable | sed 's|^|  ✓ |'
+    find prompt-hooks -type f \( -name "*.sh" -o -name "*.py" \) -perm /111 | sed 's|^|  ✓ |'
 
     echo ""
     if $PYTHON_OK; then

@@ -10,7 +10,11 @@ echo "Trigger: $MATCHER"
 ISSUES=0
 
 if command -v shellcheck &>/dev/null; then
-    if find . -name "*.sh" -type f -print0 | xargs -0 shellcheck -S warning 2>/dev/null; then
+    if find . -name "*.sh" -type f \
+        -not -path "*/node_modules/*" \
+        -not -path "*/.git/*" \
+        -not -path "*/vendor/*" \
+        -print0 | xargs -0 shellcheck -S warning 2>/dev/null; then
         echo "✓ Shell scripts pass basic checks"
     else
         echo "⚠ Shell script warnings found"
