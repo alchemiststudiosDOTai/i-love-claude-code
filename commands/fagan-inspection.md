@@ -1,6 +1,6 @@
 ---
 allowed-tools: Edit, View
-argument-hint: [artifact-path] [description]
+argument-hint: "[artifact-path] [description]"
 description: Fagan-style inspection for analysis only; identifies defects and prepares findings for the next devoir agent
 ---
 

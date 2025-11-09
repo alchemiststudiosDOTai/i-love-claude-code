@@ -71,6 +71,28 @@ wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudio
 wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudiosDOTai/i-love-claude-code/tree/main/scripts/
 ```
 
+## Tools
+
+### Slash Command Validator
+
+Validate and enforce slash command requirements automatically:
+
+```bash
+# Install dependencies
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-validator.txt
+
+# Validate commands
+python validate_commands.py commands/
+
+# Auto-fix common issues
+python fix_commands.py commands/ --dry-run  # Preview fixes
+python fix_commands.py commands/             # Apply fixes
+```
+
+See [VALIDATOR_README.md](VALIDATOR_README.md) for complete documentation.
+
 ## Repository Structure
 
 - `commands/` - Custom slash command guides and examples including context engineering workflow
@@ -81,6 +103,8 @@ wget -r -np -nH --cut-dirs=3 -R "index.html*" https://github.com/alchemiststudio
   - `CLAUDE_EXAMPLE.md` - Generic CLAUDE.md template (keep under 150 lines!)
 - `scripts/` - Utility scripts for Claude Code setup
   - `setup_claude_alias.sh` - Sets up the `cc` alias for quick Claude Code access
+- `validate_commands.py` - Slash command validator tool
+- `fix_commands.py` - Auto-fixer for common slash command issues
 
 ## Contributing
 
