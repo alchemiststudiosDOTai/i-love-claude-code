@@ -2,6 +2,14 @@
 
 Based on extensive analysis of best practices from the Claude Code community, I've created a powerful suite of slash commands that incorporate structured workflows, context awareness, and practical developer needs across Python, web development, DevOps, context engineering, and quality assurance domains.
 
+## 📚 Documentation
+
+- **[COMMANDS.md](COMMANDS.md)** - Complete guide to creating slash commands
+  - Minimum requirements
+  - Frontmatter fields reference
+  - Best practices and examples
+  - Testing and validation
+
 ## Core Design Principles Applied
 
 Before presenting the commands, here are the key insights I've incorporated:
