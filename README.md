@@ -95,14 +95,43 @@ See [VALIDATOR_README.md](VALIDATOR_README.md) for complete documentation.
 
 ## Repository Structure
 
-- `commands/` - Custom slash command guides and examples including context engineering workflow
+### Claude Code Directories (Organized by Category)
+
+#### `commands/` - Slash Commands
+Organized into subdirectories by category:
+- `python/` - Python development commands
+- `web/` - Web development commands
+- `devops/` - DevOps and infrastructure commands
+- `context engineering/` - Context engineering workflow (Research-Plan-Execute)
+- `quality-assurance/` - QA and testing commands
+- `integration/` - Third-party integration commands
+- `utilities/` - Utility and productivity commands
+
+#### `agents/` - Specialized AI Agents
+Organized into subdirectories by function:
+- `analysis/` - Code analysis and investigation agents
+- `development/` - Code development and refactoring agents
+- `documentation/` - Documentation generation agents
+- `research/` - Research and information gathering agents
+- `security/` - Security analysis agents
+- `performance/` - Performance optimization agents
+
+#### `hooks/` - Claude Code Hooks
+Organized by purpose:
+- `security/` - Security validation hooks
+- `formatting/` - Code formatting hooks
+- `notification/` - Notification hooks
+
+#### `skills/` - Claude Skills
+- `ontological-documentation/` - Ontological documentation skill
+
+### Other Directories
 - `alias/` - Useful aliases and integrations (Z.AI GLM 4.5, etc.)
-- `agents/` - Collection of specialized AI agents for development tasks
-- `.claude/` - Automatically synced directory (via pre-commit hook) containing copies of agents and commands
+- `.claude/` - Automatically synced directory (via pre-commit hook)
 - `prompts/` - Example prompts and CLAUDE.md templates
-  - `CLAUDE_EXAMPLE.md` - Generic CLAUDE.md template (keep under 150 lines!)
+  - `CLAUDE_EXAMPLE.md` - Generic CLAUDE.md template
 - `scripts/` - Utility scripts for Claude Code setup
-  - `setup_claude_alias.sh` - Sets up the `cc` alias for quick Claude Code access
+  - `setup_claude_alias.sh` - Sets up the `cc` alias
 - `validate_commands.py` - Slash command validator tool
 - `fix_commands.py` - Auto-fixer for common slash command issues
 

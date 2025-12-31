@@ -8,9 +8,34 @@ This is a documentation repository for Claude Code tips, tricks, and productivit
 
 ## Repository Structure
 
-- `README.md` - Main repository overview and contribution guidelines
-- `commands/` - Directory containing guides for creating and using slash commands
-  - `commands/README.md` - Comprehensive guide with advanced slash command examples
+This repository contains Claude Code special directories organized by category:
+
+### `commands/` - Slash Commands
+Organized into subdirectories:
+- `python/` - Python development commands
+- `web/` - Web development commands
+- `devops/` - DevOps commands
+- `context engineering/` - Research-Plan-Execute workflow
+- `quality-assurance/` - QA commands
+- `integration/` - Third-party integrations
+- `utilities/` - Utility commands
+
+### `agents/` - Specialized AI Agents
+Organized into subdirectories:
+- `analysis/` - Code analysis agents
+- `development/` - Development agents
+- `documentation/` - Documentation agents
+- `research/` - Research agents
+- `security/` - Security agents
+- `performance/` - Performance agents
+
+### `hooks/` - Claude Code Hooks
+- `security/` - Security validation hooks
+- `formatting/` - Code formatting hooks
+- `notification/` - Notification hooks
+
+### `skills/` - Claude Skills
+- `ontological-documentation/` - Ontological documentation skill
 
 ## Content Focus Areas
 
